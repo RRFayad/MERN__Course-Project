@@ -4,3 +4,36 @@
     - Add Routing
     - Split into Core Components
     - Manage UI Components + CSS Styling
+
+40. Starting Setup, Pages & Routes
+
+    - Folders Strucutute:
+        - A folder per feature (*places and users in our case)
+            - Each one containing a folder for pages and another for components
+        - A folder for shared components
+    
+    - As Max have already planned the pages, he likes to start with the pages folder
+
+    Steps.:
+        1. Install the Router
+            npm install --save react-router-dom@5 --save-exact
+        2. Organize the Pages Components
+        3. Organize the App as a Router, with the pages components
+            a. import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
+                * Router is for the 'ROuter system';
+                * Route for each Route
+                * Redirect for redirecting
+                * Switch Is to make sure we only redirect when we do not find a path
+     
+     
+            <Router>
+                <Switch>
+                    <Route path="/" exact>
+                    <Users />
+                    </Route>
+                    <Route path="/places/new" exact>
+                    <NewPlace />
+                    </Route>
+                    <Redirect to="/" />
+                </Switch>
+            </Router>
