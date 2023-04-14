@@ -25,7 +25,6 @@
                 * Redirect for redirecting
                 * Switch Is to make sure we only redirect when we do not find a path
      
-     
             <Router>
                 <Switch>
                     <Route path="/" exact>
@@ -37,3 +36,9 @@
                     <Redirect to="/" />
                 </Switch>
             </Router>
+
+41. Adding a UsersList Page / Component
+
+    * We want to start in the Users page, which will bringing all users list
+        * We 1st worked more in the UsersList logic, setting the main data we want and to be returned with a ul of UserItem 's
+        * And the we created the dummy data that will test our component
