@@ -13,11 +13,7 @@ const Users = () => {
     },
   ]; // Dummy data for the front end environment (that's why its named in caps)
 
-  return (
-    <>
-      <UsersList items={USERS} />
-    </>
-  );
+  return <UsersList items={USERS} />;
 };
 
 export default Users;

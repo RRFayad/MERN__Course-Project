@@ -42,3 +42,7 @@
     * We want to start in the Users page, which will bringing all users list
         * We 1st worked more in the UsersList logic, setting the main data we want and to be returned with a ul of UserItem 's
         * And the we created the dummy data that will test our component
+
+42. Adding a UserItem Component
+
+    - 
