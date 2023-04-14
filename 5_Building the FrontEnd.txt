@@ -43,6 +43,8 @@
         * We 1st worked more in the UsersList logic, setting the main data we want and to be returned with a ul of UserItem 's
         * And the we created the dummy data that will test our component
 
-42. Adding a UserItem Component
+ 43. Styling our App & More Components
+    
+    * We styles and creted the UI Elements
 
-    - 
+    * Remembered the Link from React-Router-Dom
