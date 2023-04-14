@@ -48,3 +48,17 @@
     * We styles and creted the UI Elements
 
     * Remembered the Link from React-Router-Dom
+
+44. Presentational vs Stateful Components
+
+    - Theory:
+        - We have presentational
+            * Dumb components, that only works in the presentation of some data
+        - We have stateful components
+            * Components with logic to process data
+
+45. Adding a Main Header
+
+    * props.children
+
+    * Check the Main Navigation.css .main-navigation__menu-btn for the sandwich menu
