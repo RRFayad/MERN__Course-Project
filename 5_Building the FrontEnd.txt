@@ -68,3 +68,21 @@
     NavLink - Link for navigation (which gets active when in the page and hover, for example)
         * In the styles, it's an anchor tag
 
+47. Implementing a Basic Desktop & Mobile Navigation & 48. React Portals
+
+    - For sidedwrawers or Modals we shoudl use portals
+        * As it will be 'over' or 'above' our HTML content, then it should become before our root div in the index.html
+
+    - Portal review:
+            1. Go to public/index.HTML
+            2. Create above the root div the div I want for my portal, and name it with the id we want
+            3. In the component file I have the modal:
+                - import ReactDOM from 'react-dom';
+                // React DOM is the library responsible for converting the JSX (react) code into DOM
+            4. return ReactDOM.createPortal(JSX Element, pointer to the div I created)
+                - I pass a render JSX code 
+                - The div I created on step 2 (using DOM)
+                    i.e.
+                    {ReactDOM.createPortal(<Backdrop onConfirm={props.onConfirm}/>, document.querySelector('#backdrop-root'))}
+
+
