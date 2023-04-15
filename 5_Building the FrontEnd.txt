@@ -62,3 +62,9 @@
     * props.children
 
     * Check the Main Navigation.css .main-navigation__menu-btn for the sandwich menu
+
+46. Adding Navlinks
+
+    NavLink - Link for navigation (which gets active when in the page and hover, for example)
+        * In the styles, it's an anchor tag
+
