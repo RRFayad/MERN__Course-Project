@@ -8,3 +8,13 @@
   background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 110%;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+}
