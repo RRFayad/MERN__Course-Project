@@ -85,8 +85,23 @@
                     i.e.
                     {ReactDOM.createPortal(<Backdrop onConfirm={props.onConfirm}/>, document.querySelector('#backdrop-root'))}
 
-49. Handling the Drawer State
+50. Animating the Sidedrawer
 
-    - 
+    - npm install --save react-transition-group
+
+    - import { CSSTransition } from "react-transition-group";
+
+    * All these attributes are from the library;
+    * check slide-in-left class in Index.css
+        <CSSTransition
+            in={props.show}
+            timeout={200}
+            classNames="slide-in-left"
+            mountOnEnter
+            unmountOnExit
+        >
+            other components here
+        </CSSTransition>
+        
 
 
