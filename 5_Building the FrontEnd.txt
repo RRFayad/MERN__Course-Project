@@ -107,6 +107,9 @@
 
     - We set the places page and routes, now we need to sort the places by the user
         * useParams o get the dynamic id
-        
+
+53. Adding Custom Buttons
+
+    * Max shared a file with a customizabel Button component
 
 
