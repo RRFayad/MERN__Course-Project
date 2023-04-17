@@ -112,4 +112,10 @@
 
     * Max shared a file with a customizabel Button component
 
+54. Adding a Modal
+
+    *We are going to create a reusable modal (in out 1st case for a map)
+
+    - 
+
 

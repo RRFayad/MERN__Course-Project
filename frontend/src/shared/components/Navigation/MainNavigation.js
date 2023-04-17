@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { Link } from "react-router-dom/cjs/react-router-dom";
+import { Link } from "react-router-dom";
 
 import MainHeader from "./MainHeader";
 import NavLinks from "./NavLinks";
 import SideDrawer from "./SideDrawer";
+import Backdrop from "../UIElements/Backdrop";
 import "./MainNavigation.css";
 
 const MainNavigation = (props) => {
@@ -14,14 +15,13 @@ const MainNavigation = (props) => {
     setDrawerIsOpen((prevState) => !prevState);
   };
 
-  const backdrop = (
-    <div className="backdrop" onClick={toggleDrawerHandler}></div>
-  );
-
   return (
     <>
       {drawerIsOpen &&
-        ReactDOM.createPortal(backdrop, document.querySelector("#backdrop"))}
+        ReactDOM.createPortal(
+          <Backdrop onClick={toggleDrawerHandler} />,
+          document.querySelector("#backdrop")
+        )}
       <SideDrawer onCloseDrawer={toggleDrawerHandler} show={drawerIsOpen}>
         <nav className="main-navigation__drawer-nav">
           <NavLinks />
