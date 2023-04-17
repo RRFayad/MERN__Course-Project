@@ -102,6 +102,11 @@
         >
             other components here
         </CSSTransition>
+
+51. Rendering User Places & Using Dynamic Route Segments & 52. Getting Route Params
+
+    - We set the places page and routes, now we need to sort the places by the user
+        * useParams o get the dynamic id
         
 
 
