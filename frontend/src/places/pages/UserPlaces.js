@@ -13,7 +13,7 @@ const DUMMY_PLACES = [
     address: "Budapest, Kossuth Lajos tér 1-3, 1055 Hungria",
     location: {
       lat: 47.5070988,
-      long: 19.0405461,
+      lng: 19.0405461,
     },
     creator: "u1",
   },
@@ -26,7 +26,7 @@ const DUMMY_PLACES = [
     address: "20 W 34th St., New York, NY 10001",
     location: {
       lat: 40.7484404,
-      long: -73.9905353,
+      lng: -73.9905353,
     },
     creator: "u2",
   },

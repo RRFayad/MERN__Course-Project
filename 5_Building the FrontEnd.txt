@@ -116,6 +116,12 @@
 
     *We are going to create a reusable modal (in out 1st case for a map)
 
-    - 
+55. Rendering a Map with Google Maps
+    * If we google it, we will find a lot of React Maps Renderization libraries
+        * But we will make our own instead
+        * Look for Google Maps SDK (Software Development Kit)
+
+
+    * We did not use Max' Map component
 
 

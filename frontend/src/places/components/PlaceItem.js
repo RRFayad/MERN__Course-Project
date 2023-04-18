@@ -23,7 +23,22 @@ const PlaceItem = (props) => {
         footer={<Button onClick={toggleMapHandler}>CLOSE</Button>}
       >
         <div className="map-container">
-          <h2>THE MAP WILL BE INTEGRATED HERE!</h2>
+          <iframe // Instead of trying to render Max' Map, someone showed this solution (which means we did not use the Map component)
+            title="map"
+            width="100%"
+            height="100%"
+            src={
+              "https://maps.google.com/maps?q=" +
+              props.coordinates.lat.toString() +
+              "," +
+              props.coordinates.lng.toString() +
+              "&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            }
+          ></iframe>
+          <script
+            type="text/javascript"
+            src="https://embedmaps.com/google-maps-authorization/script.js?id=5a33be79e53caf0a07dfec499abf84b7b481f165"
+          ></script>
         </div>
       </Modal>
       <li className="place-item">
