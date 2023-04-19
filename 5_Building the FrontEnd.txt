@@ -131,4 +131,28 @@
 
     * Side Note: Check out how can be useful these shared components Max does, as this customizable Input
 
+59. Managing State in the Input Component (useReducer)
+
+    - We want to structure customizable validation logic to the input
+
+    * useReducer - used to manage more complex state, or interconnected states
+    * https://www.youtube.com/watch?v=g_Czl_SrhQU
+        * remembering theorically:
+              const [state, dispatch] = useReducer(reducerFunction, initialStateValue);
+              
+            1. Create the reducerFunction (should be outside the component)
+                - Which will receive 2 args: state, and action
+                    * action.type will be whic logic we will render to the reducer
+                        e.g.: it could be 'INCREMENT' or 'DECREMENT' to set up a counter logic
+            
+            2. Set the hook:
+                const [state, dispatch] = useReducer(reducerFunction, initialStateValue);
+
+            3. When I want to update the state, I simply call dispatch, with my action as the argument
+                * It will call the reducer function, the the state and the action
+                    * Which by the way, will handle the state update from the action I provided
+
+    
+
+
     
