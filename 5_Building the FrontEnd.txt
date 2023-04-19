@@ -124,4 +124,11 @@
 
     * We did not use Max' Map component
 
+58. Adding a Custom Form Input Component
 
+    * As we are going to build the backend, it makes no sense yet to develop a whole logic for adding new places and updating our list of places in the front end
+        * As it would be too much work for managing states only in the browser
+
+    * Side Note: Check out how can be useful these shared components Max does, as this customizable Input
+
+    
