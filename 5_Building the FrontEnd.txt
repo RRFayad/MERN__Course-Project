@@ -152,6 +152,13 @@
                 * It will call the reducer function, the the state and the action
                     * Which by the way, will handle the state update from the action I provided
 
+60. Adding Input Validation
+
+    * Check out validators Max gave us
+
+    - Set the logic with the validation file, and updated the UX to recognize if the user has touched the form before returning error
+        * In order to the user do not see an error before starting filling the form
+
     
 
 
