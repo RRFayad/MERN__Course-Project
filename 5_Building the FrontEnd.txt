@@ -124,6 +124,10 @@
 
     * We did not use Max' Map component
 
+    !* About useEffect:
+        It runs after the renderization
+            In our case it was useful for the binding with the useRef value
+
 58. Adding a Custom Form Input Component
 
     * As we are going to build the backend, it makes no sense yet to develop a whole logic for adding new places and updating our list of places in the front end
@@ -159,6 +163,12 @@
     - Set the logic with the validation file, and updated the UX to recognize if the user has touched the form before returning error
         * In order to the user do not see an error before starting filling the form
 
+61. Sharing Input Values & Adding Multiple Inputs
+    
+    !* As we bind the props that Input receives for the NewPlace, including a function, we need to use useCallback (in the component the function is created) to avoid infinite loops
+        * Remembering that for each re-render, the whole component functions is reconstructed, and useCallback would memoize the function to not be recreated
+
+    
     
 
 
