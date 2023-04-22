@@ -168,8 +168,11 @@
     !* As we bind the props that Input receives for the NewPlace, including a function, we need to use useCallback (in the component the function is created) to avoid infinite loops
         * Remembering that for each re-render, the whole component functions is reconstructed, and useCallback would memoize the function to not be recreated
 
+63. Finishing the "Add Place" Form
 
-    
+    * Notice how easy was to implement a new input in the form, with all the validity logic as it's componentized
+
+64. Starting Work on the "Update Place" Page
     
 
 
