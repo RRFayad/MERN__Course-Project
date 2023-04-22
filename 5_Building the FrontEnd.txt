@@ -181,5 +181,8 @@
 
     ** To make the whole form more customizable, we will create a custom hook
 
+66. Creating a Custom Form Hook (useForm)
 
+    * custom hooks uses stateful logics
     
+    * Created a stateful logic to componentize the whole form (of new place and update place)
