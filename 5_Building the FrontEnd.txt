@@ -168,6 +168,7 @@
     !* As we bind the props that Input receives for the NewPlace, including a function, we need to use useCallback (in the component the function is created) to avoid infinite loops
         * Remembering that for each re-render, the whole component functions is reconstructed, and useCallback would memoize the function to not be recreated
 
+
     
     
 
