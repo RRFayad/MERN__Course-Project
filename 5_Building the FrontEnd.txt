@@ -172,10 +172,14 @@
 
     * Notice how easy was to implement a new input in the form, with all the validity logic as it's componentized
 
-64. Starting Work on the "Update Place" Page
+64. Starting Work on the 'Update Place' Page
 
     - We are going to make the fomr and the input component even more customizable
-    
+
+65. Adjusting the Input Component
+    * We want to add option for initial values and validity
+
+    ** To make the whole form more customizable, we will create a custom hook
 
 
     
