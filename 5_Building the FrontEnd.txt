@@ -194,3 +194,5 @@
 
     - Then we create a way to the form initialize with empty value and false validations, and then be set with the fetched data
         * There's no fetching data yet, but ok
+
+70. Showing a Deletion Warning
