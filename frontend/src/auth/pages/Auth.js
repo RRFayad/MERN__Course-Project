@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import Input from "../../shared/components/FormElements/Input";
 import {
@@ -8,9 +8,12 @@ import {
 } from "../../shared/util/validators";
 import Button from "../../shared/components/FormElements/Button";
 import { useForm } from "../../shared/hooks/form-hook";
+import AuthContext from "../../shared/context/auth-context";
 import "./Auth.css";
 
 function NewPlace() {
+  const authCtx = useContext(AuthContext);
+
   const [userHasAccount, setUserHasAccount] = useState(true);
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -29,7 +32,12 @@ function NewPlace() {
   const authSubmitHandler = (event) => {
     event.preventDefault();
     // Create the logic ofr sending this to the backend
-    console.log(formState.inputs);
+    if (userHasAccount) {
+      return authCtx.onLogin();
+    }
+    if (!userHasAccount) {
+      return authCtx.onSignUp();
+    }
   };
 
   const toggleHasAccountHandler = (event) => {

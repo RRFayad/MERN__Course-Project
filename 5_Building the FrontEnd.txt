@@ -200,3 +200,10 @@
     - useForm
         - email and password
         - validations (email and min length for password)
+
+73. Adding Auth Context for App-wide State Management
+
+    - We will work in the (fake) authentication (fake because we dont have a backend yet), using React COntext
+
+    - Used React context, also for setting up he routes and features for logged in and logged out
+        * I made it by myself, then it's a bit different from Max's solution

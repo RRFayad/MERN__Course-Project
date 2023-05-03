@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -12,8 +12,11 @@ import UserPlaces from "./places/pages/UserPlaces";
 import UpdatePlace from "./places/pages/UpdatePlace";
 import Auth from "./auth/pages/Auth";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
+import AuthContext from "./shared/context/auth-context";
 
 const App = () => {
+  const authCtx = useContext(AuthContext);
+
   return (
     <Router>
       <MainNavigation />
@@ -26,14 +29,17 @@ const App = () => {
             <UserPlaces />
           </Route>
           <Route path="/places/new" exact>
-            <NewPlace />
+            {authCtx.isLoggedIn && <NewPlace />}
+            {!authCtx.isLoggedIn && <Redirect to="/" />}
           </Route>
           <Route path="/places/:placeId" exact>
             <UpdatePlace />
           </Route>
-          <Route path="/auth" exact>
-            <Auth />
-          </Route>
+          {!authCtx.isLoggedIn && (
+            <Route path="/auth" exact>
+              <Auth />
+            </Route>
+          )}
           <Redirect to="/" />
         </Switch>
       </main>
