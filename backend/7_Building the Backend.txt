@@ -1,0 +1,9 @@
+88. Intro
+    - Set Up Node & Express App
+    - Add ROutes
+    - Controllers (with Dummy logic while we have no Database yet)
+    - Add Inputs Validation
+
+89. Setting Up our Project
+    - 
+

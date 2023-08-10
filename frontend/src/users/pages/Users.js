@@ -8,7 +8,7 @@ const Users = () => {
       id: "u1",
       name: "Renan Fayad",
       image:
-        "https://media.licdn.com/dms/image/C4E03AQH5HDkBly2nqg/profile-displayphoto-shrink_800_800/0/1655491533997?e=1686787200&v=beta&t=D8XWI1VbSkxRhrKDZx7tzEECpcobQ40La092pvK1sOw",
+        "https://scontent.fcgh7-1.fna.fbcdn.net/v/t1.6435-9/46882033_2167690989948400_5943887528212824064_n.jpg?_nc_cat=100&cb=99be929b-3346023f&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeHPiT65MEyNkzv0A0mKlzzioNg9qA5fcIug2D2oDl9wi5rJQE4chjVs9SjD-RiiZ55xQPUzNlIM_HKwpXofIDx3&_nc_ohc=v0X0FiNblP4AX9ZYx3O&_nc_ht=scontent.fcgh7-1.fna&oh=00_AfD-H46Qx7qQE0MxZBJUHHHT9QdOtlRKia5dqTd82lx6cw&oe=64FC1CA3",
       places: 3,
     },
   ]; // Dummy data for the front end environment (that's why its named in caps)
