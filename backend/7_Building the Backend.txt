@@ -8,3 +8,11 @@
     - installed express and body-parser
     - installed nodemon for development envirornment
 
+90. Implementing Basic Routing
+    
+    - Creating routes folder, with a file for the routes of each model
+    - Create the Router
+    - Import it to the router, and organize
+        * think about the route filter logic - app.use('api/places', placesRoutes)
+    - 
+
