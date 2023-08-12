@@ -14,5 +14,35 @@
     - Create the Router
     - Import it to the router, and organize
         * think about the route filter logic - app.use('api/places', placesRoutes)
+
+93. Handling Errors
+
+    - In our example (the error handling in the places route / controller):
+        - Create a response setting the status 404 ('Not found'), and a message;
+            * Remembering that the default status is 200 for success
+        
+        - e.g.:
+              if (!place) {
+                    return res
+                    .status(404)
+                    .json({ message: "Could not find a place for the provided Id." });
+                }
+                res.json(place);
+
+        - Refactoring error handling:
+            - If we do this for each logic, will be a lot of code duplication;
+            - Express has is own way to do it:
+                
+                1. Set own error middleware in the app
+                    * The error middleware has 4 args, with the 1st being the error
+                
+                2. Set the error trigger
+                    - For sync code, it could be to throw an error, or to call next instead of sending a response
+                    - For async (usual with DB), use next()
+        
+        - It would be even better if we crete our own error model
+
+94. Adding our own Error Model
+
     
 
