@@ -24,4 +24,11 @@ router.get("/:pid", (req, res, next) => {
   res.json(place);
 });
 
+//Just to remember, if it was only "/user", it should become before the dynamic route above, as "user" would be interpreted as the :pid value
+router.get("/user/:uid", (req, res, next) => {
+  const userId = req.params.uid;
+  const places = DUMMY_PLACES.filter((item) => item.creator === userId);
+  res.json({ places });
+});
+
 module.exports = router;
