@@ -6,6 +6,8 @@ const userRoutes = require("./routes/users-routes");
 
 const app = express();
 
+app.use(bodyParser.json()); // Added this for the body of POSTs methods that create data (such as new places)
+
 app.use("/api/places", placeRoutes);
 app.use("/api/users", userRoutes);
 

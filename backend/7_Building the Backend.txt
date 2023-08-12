@@ -46,5 +46,10 @@
 
     - We created an customized class Model for our errors (and refactored the error handling code)
 
+
+* in 96. We installed uuid for generating unique Id's
+    const { v4: uuid } = require("uuid");
+    id:uuid()
+
     
 

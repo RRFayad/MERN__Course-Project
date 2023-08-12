@@ -12,7 +12,7 @@ const DUMMY_USERS = [
   },
 ];
 
-router.get("/:uid", (req, res, next) => {
+router.get("/", (req, res, next) => {
   const userId = req.params.uid;
   const user = DUMMY_USERS.find((item) => item.id === userId);
 
