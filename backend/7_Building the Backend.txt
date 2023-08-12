@@ -44,5 +44,7 @@
 
 94. Adding our own Error Model
 
+    - We created an customized class Model for our errors (and refactored the error handling code)
+
     
 
