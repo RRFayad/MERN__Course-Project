@@ -54,11 +54,32 @@ const createPlace = (req, res, next) => {
     creator,
   };
 
-  DUMMY_PLACES.push(createPlace);
+  DUMMY_PLACES.push(createdPlace);
 
   res.status(201).json({ place: createdPlace }); // 201 stand for Successfully created
+};
+
+const updatePlaceById = (req, res, next) => {
+  const { title, description } = req.body;
+  const placeId = req.params.pid;
+  const placeIndex = DUMMY_PLACES.findIndex((item) => item.id === placeId);
+  const updatedPlace = { ...DUMMY_PLACES[placeIndex], title, description };
+
+  DUMMY_PLACES.splice(placeIndex, 1, updatedPlace);
+
+  res.json({ places: DUMMY_PLACES });
+};
+
+const deletePlaceById = (req, res, next) => {
+  const placeId = req.params.pid;
+  const placeIndex = DUMMY_PLACES.findIndex((item) => item.id === placeId);
+  DUMMY_PLACES.splice(placeIndex, 1);
+
+  res.json({ message: "Place Deleted!" });
 };
 
 exports.getPlaceById = getPlaceById;
 exports.getPlacesByUserId = getPlacesByUserId;
 exports.createPlace = createPlace;
+exports.updatePlaceById = updatePlaceById;
+exports.deletePlaceById = deletePlaceById;

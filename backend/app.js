@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const HttpError = require("./models/http-error");
 
 const placeRoutes = require("./routes/places-routes");
 const userRoutes = require("./routes/users-routes");
@@ -10,6 +11,11 @@ app.use(bodyParser.json()); // Added this for the body of POSTs methods that cre
 
 app.use("/api/places", placeRoutes);
 app.use("/api/users", userRoutes);
+
+app.use((req, res, next) => {
+  const error = new HttpError("Could not find this route", 404);
+  return next(error);
+});
 
 // When there's a MW with 4 params, express will recongnize it as special, and run it only when there's an error
 app.use((error, req, res, next) => {
