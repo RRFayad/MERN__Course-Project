@@ -1,4 +1,5 @@
 const { v4: uuid } = require("uuid");
+const { validationResult } = require("express-validator");
 
 const HttpError = require("../models/http-error");
 
@@ -16,6 +17,14 @@ const getAllUsers = (req, res, next) => {
 };
 
 const signup = (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log(errors);
+    return next(
+      new HttpError("Please insert your name, e-mail and password", 422)
+    );
+  }
+
   const { name, email, password } = req.body;
 
   if (DUMMY_USERS.findIndex((item) => item.email === email) === -1) {
