@@ -63,5 +63,17 @@
         2. In the controller, import and set the validationResult(req)
             * It will check if there is any validation error from the middleware
 
+104. Using Google's Geocoding API to Convert an Address Into Coordinates
+    - .env
+        install dotenv
+        set up the api_key
+        config dotenv in the file that will consume my API KYE
+    
+    * encodeURI(str) => converts the string in a URL format
+
+    -axios
+
+
+
     
 
