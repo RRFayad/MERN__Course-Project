@@ -1,0 +1,29 @@
+123. Module Introduction
+    - Defining Mongoose Models
+
+    - CRUD Operations
+
+    - Connecting Places & Users (Relations)
+
+Steps:
+
+    1. Install Mongoose & Connect it our Backend to MongoDB 
+        
+        - npm install --save mongoose
+
+        - Import it in the app
+
+    2. Create the Models
+
+        * Mongo DB => Collections => Documents
+        * Mongoose => Schema (blueprint of a document) => Model (each instance will generate a new document)
+
+    3. Create the 'Create Document' Logic - The Controller
+
+
+    
+
+
+
+
+
