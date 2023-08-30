@@ -25,7 +25,7 @@ router.patch(
   [
     check("title").not().isEmpty(),
     check("description").isLength({ min: 5 }),
-    check("address").not().isEmpty(),
+    // check("address").not().isEmpty(),
   ],
   placesControllers.updatePlaceById
 );
