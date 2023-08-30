@@ -20,11 +20,15 @@ Steps:
 
     3. Develop the CRUD Logic - The Controller
 
-        - C: createPlace Logic
-            - Nothing new, used the Model to instancing the new Place, and the save(), that comes from mongoose
+        - Create: 
+            - createPlace Logic
+                - Nothing new, used the Model to instancing the new Place, and the save(), that comes from mongoose
 
-        - R: getPlaceById Logic
-            - Check this one because of the comments
+        - Read:
+            - getPlaceById Logic 
+            - getPlacesByUserId
+                * note the return toObject({getters:true})
+            
 
 
     
