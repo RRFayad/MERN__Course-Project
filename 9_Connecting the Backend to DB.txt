@@ -18,7 +18,13 @@ Steps:
         * Mongo DB => Collections => Documents
         * Mongoose => Schema (blueprint of a document) => Model (each instance will generate a new document)
 
-    3. Create the 'Create Document' Logic - The Controller
+    3. Develop the CRUD Logic - The Controller
+
+        - C: createPlace Logic
+            - Nothing new, used the Model to instancing the new Place, and the save(), that comes from mongoose
+
+        - R: getPlaceById Logic
+            - Check this one because of the comments
 
 
     

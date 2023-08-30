@@ -21,21 +21,38 @@ const DUMMY_PLACES = [
   },
 ];
 
-const getPlaceById = (req, res, next) => {
+const getPlaceById = async (req, res, next) => {
   const placeId = req.params.pid;
-  const place = DUMMY_PLACES.find((item) => item.id === placeId);
 
-  if (!place) {
+  let place;
+  try {
+    place = await Place.findById(placeId);
+  } catch {
+    // This error handling is for connection issues with the DB, and the second for when we don't find a specific place
     return next(
-      new HttpError("Could not find a place for the provided user Id.", 404)
+      new HttpError("Something went wrong! Please try again later", 500)
     );
   }
-  res.json(place);
+
+  if (!place) {
+    return next(new HttpError("Could not find a place for th given Id", 404));
+  }
+
+  res.json({ place: place.toObject({ getters: true }) }); // this will make it returns as an JS object, and also a 'clean' id, without the _id
+  // res.json(place);
 };
 
-const getPlacesByUserId = (req, res, next) => {
+const getPlacesByUserId = async (req, res, next) => {
   const userId = req.params.uid;
-  const places = DUMMY_PLACES.filter((item) => item.creator === userId);
+
+  let places = [];
+  try {
+    places = await Place.find({ creator: userId });
+  } catch {
+    return next(
+      new HttpError("Something went wrong! Please try again later", 500)
+    );
+  }
 
   if (!places.length) {
     return next(
@@ -43,7 +60,7 @@ const getPlacesByUserId = (req, res, next) => {
     );
   }
 
-  res.json({ places });
+  res.json({ places: places });
 };
 
 const createPlace = async (req, res, next) => {
