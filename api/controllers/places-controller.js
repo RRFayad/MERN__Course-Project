@@ -139,17 +139,24 @@ const updatePlaceById = async (req, res, next) => {
   res.json({ place: result.toObject({ getters: true }) });
 };
 
-const deletePlaceById = (req, res, next) => {
+const deletePlaceById = async (req, res, next) => {
   const placeId = req.params.pid;
-  const placeIndex = DUMMY_PLACES.findIndex((item) => item.id === placeId);
 
-  if (placeIndex === -1) {
-    return next(new HttpError("Could not find the place", 404));
+  let place;
+  try {
+    place = await Place.findById(placeId);
+    if (place) {
+      await place.remove();
+    } else {
+      return res.json({ message: "Could not find specified place" });
+    }
+  } catch {
+    return next(
+      new HttpError("Something went wrong! Please try again later", 500)
+    );
   }
 
-  DUMMY_PLACES.splice(placeIndex, 1);
-
-  res.json({ message: "Place Deleted!" });
+  res.json({ message: "Place Deleted Successfully" });
 };
 
 exports.getPlaceById = getPlaceById;

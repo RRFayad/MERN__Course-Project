@@ -30,7 +30,10 @@ Steps:
                 * note the return toObject({getters:true})
             
         - Update:
-            - 
+            - Actually, exactly the same as Read and the Create (save())
+
+        - Delete
+            - Nothing new here, but the remove()
 
 
     
