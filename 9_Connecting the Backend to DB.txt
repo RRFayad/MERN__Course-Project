@@ -42,6 +42,8 @@ Steps:
 
         - npm install --save mongoose-unique-validator
             * To ensure i a efficient way that there will be not duplicate e-mail on the DB
+        
+        - Signup
 
 
 
