@@ -6,6 +6,7 @@
     - Connecting Places & Users (Relations)
 
 Steps:
+    Work in the places controllers:
 
     1. Install Mongoose & Connect it our Backend to MongoDB 
         
@@ -34,6 +35,15 @@ Steps:
 
         - Delete
             - Nothing new here, but the remove()
+
+
+    4. Work in Users
+        * Treated this separetedly because it has its own observations:
+
+        - npm install --save mongoose-unique-validator
+            * To ensure i a efficient way that there will be not duplicate e-mail on the DB
+
+
 
 
     
