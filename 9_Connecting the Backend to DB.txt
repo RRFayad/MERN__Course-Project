@@ -47,6 +47,10 @@ Steps:
             
         - Controllers
             - Signup
+            - Login
+            - Getting Users
+                * Important: We can do this to exclude the password:
+                   const users =await User.find({}, "-password");
 
 
 

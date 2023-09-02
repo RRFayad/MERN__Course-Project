@@ -3,6 +3,7 @@ const { validationResult } = require("express-validator");
 
 const HttpError = require("../models/http-error");
 const User = require("../models/user");
+const user = require("../models/user");
 
 const DUMMY_USERS = [
   {
@@ -13,8 +14,22 @@ const DUMMY_USERS = [
   },
 ];
 
-const getAllUsers = (req, res, next) => {
-  res.json({ users: DUMMY_USERS });
+const getAllUsers = async (req, res, next) => {
+  let users;
+  try {
+    //  users = await User.find({}, "email name");   // We could make this to get only for these
+    users = await User.find({}, "-password"); // This will make us exclude our password
+  } catch {
+    const error = new HttpError(
+      "Could not fetch users, please try again later",
+      500
+    );
+    return next(error);
+  }
+  {
+  }
+
+  res.json({ users: users.map((user) => user.toObject({ getters: true })) });
 };
 
 const signup = async (req, res, next) => {

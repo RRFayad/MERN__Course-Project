@@ -8,7 +8,7 @@ router.get("/", usersControllers.getAllUsers);
 router.post(
   "/signup",
   [
-    check("name").isLength({ min: 2 }).isAlpha(),
+    check("name").isLength({ min: 2 }),
     check("email").normalizeEmail().isEmail(),
     check("password").isLength(6),
   ],
