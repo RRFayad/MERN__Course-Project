@@ -1,9 +1,11 @@
 const { v4: uuid } = require("uuid");
 const { validationResult } = require("express-validator");
+const mongoose = require("mongoose");
 
 const HttpError = require("../models/http-error");
 const getCoordinatesForAddress = require("../util/location");
 const Place = require("../models/place");
+const User = require("../models/user");
 
 const DUMMY_PLACES = [
   {
@@ -75,7 +77,6 @@ const createPlace = async (req, res, next) => {
   const { title, description, address, creator } = req.body;
 
   let coordinates;
-  // let createdPlace;
 
   try {
     coordinates = await getCoordinatesForAddress(address);
@@ -93,15 +94,33 @@ const createPlace = async (req, res, next) => {
     creator,
   });
 
+  let user;
+  try {
+    user = await User.findById(creator);
+  } catch {
+    const error = new HttpError("Fetching user failed, please try again", 500);
+    return next(error);
+  }
+
+  if (!user) {
+    return next(new HttpError("User not found", 404));
+  }
+
   let result;
   try {
-    result = await createdPlace.save(); // save() comes from mongoose, which will store the new document in the right collection (from the model)
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    await createdPlace.save({ session });
+    // IMPORTANT: If there's no collection yet, we will have to create it manually, in a session it's not automatically created!
+    await user.places.push(createdPlace);
+    await user.save({ session }); // push is the mongoose method not the JS' AND it only saves the palceId
+    await session.commitTransaction(); // Only here the changes are saved in the Db
   } catch {
     const error = new HttpError("Creating place failed, please try again", 500);
     return next(error);
   }
 
-  res.status(201).json({ place: result }); // 201 stand for Successfully created
+  res.status(201).json({ place: createdPlace.toObject({ getters: true }) }); // 201 stand for Successfully created
 };
 
 const updatePlaceById = async (req, res, next) => {

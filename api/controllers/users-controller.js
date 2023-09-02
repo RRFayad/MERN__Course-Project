@@ -41,7 +41,7 @@ const signup = async (req, res, next) => {
     );
   }
 
-  const { name, email, password, places } = req.body;
+  const { name, email, password } = req.body;
 
   let existingUser;
   try {
@@ -62,7 +62,7 @@ const signup = async (req, res, next) => {
     image:
       "https://multiurso.com.br/wp-content/uploads/2022/08/diferenca-pato-marreco-foto-1132x670.jpg",
     password,
-    places,
+    places: [],
   });
 
   let result;
