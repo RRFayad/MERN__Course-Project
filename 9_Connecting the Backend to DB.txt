@@ -53,29 +53,36 @@ Steps:
                    const users =await User.find({}, "-password");
         
         - Relations (between places and users)
-            * 1 place belongs to 1 user, and 1 user can create multiple places
 
-            - In the place Schema:
-                creator: { type: mongoose.Types.ObjectId, required: true, ref: "User" },
+            - Adding a new Place (and referring it to the user)
+                * 1 place belongs to 1 user, and 1 user can create multiple places
+
+                - In the place Schema:
+                    creator: { type: mongoose.Types.ObjectId, required: true, ref: "User" },
+                
+                - In the user Schema:
+                    places: [{ type: mongoose.Types.ObjectId, required: true, ref: "Place" }],
+
+        
+                    * Right now, it will not be the final approach as we need to create the authentication yet
+
+                - In the place controller (check createPlace):
+                    - We will have two indepent tasks, that must succeed:
+                        - Store or create the new Place
+                        - add the palceId to the correspondent user
+
+                    - If any of the operations fail, we want to cancel everything
+                        - So, we need sessions and transactions
+                            - Transactions allow us to perform multiple operations in isolation and to undo these
+                            - Transactions are built on sessions
+
+                        
+                        - IMPORTANT: If there's no collection yet, we will have to create it manually, in a session it's not automatically created!
             
-            - In the user Schema:
-                places: [{ type: mongoose.Types.ObjectId, required: true, ref: "Place" }],
+            - Deleting a Place (also from the user Reference)
+                - 
 
-       
-                * Right now, it will not be the final approach as we need to create the authentication yet
 
-            - In the place controller (check createPlace):
-                - We will have two indepent tasks, that must succeed:
-                    - Store or create the new Place
-                    - add the palceId to the correspondent user
-
-                - If any of the operations fail, we want to cancel everything
-                    - So, we need sessions and transactions
-                        - Transactions allow us to perform multiple operations in isolation and to undo these
-                        - Transactions are built on sessions
-
-                    
-                    - IMPORTANT: If there's no collection yet, we will have to create it manually, in a session it's not automatically created!
         
 
 

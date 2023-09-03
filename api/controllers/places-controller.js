@@ -106,7 +106,6 @@ const createPlace = async (req, res, next) => {
     return next(new HttpError("User not found", 404));
   }
 
-  let result;
   try {
     const session = await mongoose.startSession();
     session.startTransaction();
@@ -163,16 +162,33 @@ const deletePlaceById = async (req, res, next) => {
 
   let place;
   try {
-    place = await Place.findById(placeId);
-    if (place) {
-      await place.remove();
-    } else {
-      return res.json({ message: "Could not find specified place" });
-    }
+    place = await Place.findById(placeId).populate("creator");
   } catch {
     return next(
-      new HttpError("Something went wrong! Please try again later", 500)
+      new HttpError(
+        "Something went wrong fetching the place! Please try again later",
+        500
+      )
     );
+  }
+
+  if (!place) {
+    return res.json({ message: "Could not find specified place or user" });
+  }
+
+  try {
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    await place.deleteOne({ session });
+    place.creator.places.pull(place); // pull is the mongoose method to remove from an array
+    await place.creator.save({ session });
+    await session.commitTransaction(); // Only here the changes are saved in the Db
+  } catch (err) {
+    const error = new HttpError(
+      "Deleting place failed, please try again" + err,
+      500
+    );
+    return next(error);
   }
 
   res.json({ message: "Place Deleted Successfully" });
