@@ -7,22 +7,6 @@ const getCoordinatesForAddress = require("../util/location");
 const Place = require("../models/place");
 const User = require("../models/user");
 
-const DUMMY_PLACES = [
-  {
-    id: "p1",
-    title: "Budapest Parliament",
-    description: "One of the most beautifuls parliaments in the world",
-    imageUrl:
-      "https://www.historyhit.com/app/uploads/fly-images/5158752/parliament-budapest-788x537.jpg",
-    address: "Budapest, Kossuth Lajos tér 1-3, 1055 Hungria",
-    location: {
-      lat: 47.5070988,
-      lng: 19.0405461,
-    },
-    creator: "u1",
-  },
-];
-
 const getPlaceById = async (req, res, next) => {
   const placeId = req.params.pid;
 
