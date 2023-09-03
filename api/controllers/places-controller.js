@@ -49,7 +49,9 @@ const getPlacesByUserId = async (req, res, next) => {
 
   let places = [];
   try {
-    places = await Place.find({ creator: userId });
+    // places = await Place.find({ creator: userId });
+    const polulatedUser = await User.findById(userId).populate("places"); // Just to show other approach
+    places = polulatedUser.places;
   } catch {
     return next(
       new HttpError("Something went wrong! Please try again later", 500)
