@@ -18,6 +18,7 @@ Steps:
 
         * Mongo DB => Collections => Documents
         * Mongoose => Schema (blueprint of a document) => Model (each instance will generate a new document)
+            ** npm install mongoose-unique-validator        - for checking unique property
 
     3. Develop the CRUD Logic - The Controller
 
@@ -34,7 +35,7 @@ Steps:
             - Actually, exactly the same as Read and the Create (save())
 
         - Delete
-            - Nothing new here, but the remove()
+            - Nothing new here, but the deleteOne()
 
 
     4. Work in Users
@@ -80,7 +81,11 @@ Steps:
                         - IMPORTANT: If there's no collection yet, we will have to create it manually, in a session it's not automatically created!
             
             - Deleting a Place (also from the user Reference)
-                - 
+                - We used populate to get access to the content of the document stored in other collection (access the User doc from the Place)
+                - Same as the createPlace, with session and transaction
+                - instead of push, we used pull for the reference in the array
+
+            * Also showed populate approach from getting places from userId
 
 
         

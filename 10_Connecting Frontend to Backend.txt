@@ -1,0 +1,20 @@
+Main Goals:
+    - Send HTTP Requests and Use Response Data
+    - Handle Erros and loading State
+    - Update User Interface
+
+Big Steps:
+
+    * Max adjusted the DB Url to start a new one
+    
+    
+    1.  Create user (sign up method)
+        * mainly because we need the user for the other data logic in the Models
+
+        * It will return a error of CORS
+            ** CORS is a security mechanism for the backend only accept requests from the same server (which obviously conflicts with an API idea)
+    
+    2. BackEnd: Add the CORS Middleware
+
+
+    

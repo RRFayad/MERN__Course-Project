@@ -10,6 +10,17 @@ const app = express();
 
 app.use(bodyParser.json()); // Added this for the body of POSTs methods that create data (such as new places)
 
+//CORS => Will set Headers for the response
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*"); // We are allowing all URL's to interact with our API, we could specify some
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization"); // We are allowing theses headers in the requests
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, PATCH, DELETE"
+  );
+  next();
+});
+
 app.use("/api/places", placeRoutes);
 app.use("/api/users", userRoutes);
 
@@ -29,7 +40,7 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    `mongodb+srv://renan_fayad:${process.env.MONGO_PROJECT_PASSWORD}@cluster0.1oktfwg.mongodb.net/`
+    `mongodb+srv://renan_fayad:${process.env.MONGO_PROJECT_PASSWORD}@cluster0.1oktfwg.mongodb.net/mern`
   )
   .then(() => {
     app.listen(5000);
