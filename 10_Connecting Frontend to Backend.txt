@@ -8,13 +8,21 @@ Big Steps:
     * Max adjusted the DB Url to start a new one
     
     
-    1.  Create user (sign up method)
+    1.  Create user (sign up method in the Auth page)
         * mainly because we need the user for the other data logic in the Models
 
         * It will return a error of CORS
             ** CORS is a security mechanism for the backend only accept requests from the same server (which obviously conflicts with an API idea)
     
     2. BackEnd: Add the CORS Middleware
+        - It will set header for:
+            allow origin of the requests (the browsers do not receive req ou res from other domains);
+            allow header (th etyoe of headers of the requests)
+            allow methods
+
+    3. Back to the create user (actually to any fetch function)
+        - Handle errors
+        - Give feedback about loading state
 
 
     

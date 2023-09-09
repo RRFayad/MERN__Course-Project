@@ -9,11 +9,14 @@ import {
 import Button from "../../shared/components/FormElements/Button";
 import { useForm } from "../../shared/hooks/form-hook";
 import AuthContext from "../../shared/context/auth-context";
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import "./Auth.css";
 
 function NewPlace() {
   const authCtx = useContext(AuthContext);
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [userHasAccount, setUserHasAccount] = useState(true);
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -37,6 +40,7 @@ function NewPlace() {
     }
     if (!userHasAccount) {
       try {
+        setIsLoading(true);
         const response = await fetch("http://localhost:5000/api/users/signup", {
           method: "POST",
           headers: {
@@ -50,11 +54,13 @@ function NewPlace() {
         });
         const data = await response.json();
         console.log(data);
+        setIsLoading(false);
+        return authCtx.onSignUp();
       } catch (error) {
         console.log(error);
+        setIsLoading(false);
+        setError(error.message || "Something went wrong");
       }
-
-      return authCtx.onSignUp();
     }
   };
 
@@ -85,6 +91,7 @@ function NewPlace() {
 
   return (
     <form className="auth-form" onSubmit={authSubmitHandler}>
+      {isLoading && <LoadingSpinner asOverlay />}
       <h2 className="auth-form__title">Login Required</h2>
       <button
         className="auth-form__button--toggle-signup"
