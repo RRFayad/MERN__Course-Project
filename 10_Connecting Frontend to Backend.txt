@@ -8,7 +8,7 @@ Big Steps:
     * Max adjusted the DB Url to start a new one
     
     
-    1.  Create user (sign up method in the Auth page)
+    1.  Fetching data function: Create user (sign up method in the Auth page)
         * mainly because we need the user for the other data logic in the Models
 
         * It will return a error of CORS
@@ -21,8 +21,13 @@ Big Steps:
             allow methods
 
     3. Back to the create user (actually to any fetch function)
+        - Loading state
+            - Set logic for manage a state of loading (while waiting the response), and while that, show a loading spinner
+        
         - Handle errors
-        - Give feedback about loading state
+            - When fetching, set an if(!response.ok) throw new Error
+                * Basically, whgen we receive a 400ish or 500ish response (not found), technically it's not an error, just a response.
+                * But for our purposes it's an error, so we should crete logic for that, recogninzing the response.ok value
 
 
     
