@@ -1,19 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import UsersList from "../components/UsersList";
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 
 const Users = () => {
-  const USERS = [
-    {
-      id: "u1",
-      name: "Renan Fayad",
-      image:
-        "https://scontent.fcgh7-1.fna.fbcdn.net/v/t1.6435-9/46882033_2167690989948400_5943887528212824064_n.jpg?_nc_cat=100&cb=99be929b-3346023f&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeHPiT65MEyNkzv0A0mKlzzioNg9qA5fcIug2D2oDl9wi5rJQE4chjVs9SjD-RiiZ55xQPUzNlIM_HKwpXofIDx3&_nc_ohc=v0X0FiNblP4AX9ZYx3O&_nc_ht=scontent.fcgh7-1.fna&oh=00_AfD-H46Qx7qQE0MxZBJUHHHT9QdOtlRKia5dqTd82lx6cw&oe=64FC1CA3",
-      places: 3,
-    },
-  ]; // Dummy data for the front end environment (that's why its named in caps)
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [users, setUsers] = useState([]);
 
-  return <UsersList items={USERS} />;
+  useEffect(() => {
+    const fetchUsers = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch("http://localhost:5000/api/users");
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.message);
+        }
+        setUsers(data.users);
+      } catch (err) {
+        setError(err.message);
+      }
+      setIsLoading(false);
+    };
+    fetchUsers();
+  }, []);
+
+  const errorHandler = () => setError(null);
+
+  return (
+    <>
+      <ErrorModal error={error} onCLear={errorHandler} />
+      {isLoading && (
+        <div className="center">
+          <LoadingSpinner />
+        </div>
+      )}
+      {!isLoading && users && <UsersList items={users} />};
+    </>
+  );
 };
 
 export default Users;

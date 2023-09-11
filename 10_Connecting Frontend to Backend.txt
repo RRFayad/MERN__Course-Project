@@ -8,11 +8,14 @@ Big Steps:
     * Max adjusted the DB Url to start a new one
     
     
-    1.  Fetching data function: Create user (sign up method in the Auth page)
+    1.  Fetching data functions: 
+        * We started wit Create user (sign up method in the Auth page)
         * mainly because we need the user for the other data logic in the Models
 
         * It will return a error of CORS
             ** CORS is a security mechanism for the backend only accept requests from the same server (which obviously conflicts with an API idea)
+    
+        * remember to create an ascyn function,l and then run it, to not make the useEffect async
     
     2. BackEnd: Add the CORS Middleware
         - It will set header for:
@@ -28,6 +31,9 @@ Big Steps:
             - When fetching, set an if(!response.ok) throw new Error
                 * Basically, whgen we receive a 400ish or 500ish response (not found), technically it's not an error, just a response.
                 * But for our purposes it's an error, so we should crete logic for that, recogninzing the response.ok value
+    
+    4. Create a custom hook for the Http Requests
+        - 
 
 
     

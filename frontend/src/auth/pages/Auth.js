@@ -80,11 +80,11 @@ const Auth = () => {
         if (!response.ok) {
           throw new Error(responseData.message);
         }
-        setIsLoading(false);
         auth.login();
-      } catch (err) {
         setIsLoading(false);
+      } catch (err) {
         setError(err.message || "Something went wrong, please try again.");
+        setIsLoading(false);
       }
     } else {
       try {
@@ -104,11 +104,11 @@ const Auth = () => {
         if (!response.ok) {
           throw new Error(responseData.message);
         }
-        setIsLoading(false);
         auth.login();
-      } catch (err) {
         setIsLoading(false);
+      } catch (err) {
         setError(err.message || "Something went wrong, please try again.");
+        setIsLoading(false);
       }
     }
   };
