@@ -15,24 +15,29 @@ export const useHttpClient = () => {
       activeHttpRequests.current.push(httpAbortController);
 
       try {
-        fetch(url, {
+        const response = await fetch(url, {
           method,
           body,
           headers,
           signal: httpAbortController.signal,
         });
 
-        const data = await response.json();
+        const responseData = await response.json();
+
+        activeHttpRequests.current = activeHttpRequests.current.filter(
+          (reqCtrl) => reqCtrl !== httpAbortController
+        );
 
         if (!response.ok) {
           throw new Error(responseData.message);
         }
         setIsLoading(false);
-        return data;
+        return responseData;
       } catch (err) {
         setError(err.message);
+        setIsLoading(false);
+        throw err;
       }
-      setIsLoading(false);
     },
     []
   );
@@ -44,6 +49,7 @@ export const useHttpClient = () => {
   useEffect(() => {
     return () => {
       // clean up function: Before the useEffect runs again, or when the component unmount
+      // eslint-disable-next-line
       activeHttpRequests.current.forEach((aborCtrl) => aborCtrl.abort());
     };
   }, []);
