@@ -32,8 +32,12 @@ Big Steps:
                 * Basically, whgen we receive a 400ish or 500ish response (not found), technically it's not an error, just a response.
                 * But for our purposes it's an error, so we should crete logic for that, recogninzing the response.ok value
     
+        * Check "Auth__old.js" - With the logic beore the custom hook
+    
     4. Create a custom hook for the Http Requests
-        - 
+        - Check http-hook
+
+     
 
 
     

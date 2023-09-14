@@ -48,6 +48,8 @@ const getPlacesByUserId = async (req, res, next) => {
     );
   }
 
+  console.log(places);
+
   res.json({
     places: places.map((place) => place.toObject({ getters: true })),
   });
