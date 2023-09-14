@@ -48,8 +48,6 @@ const getPlacesByUserId = async (req, res, next) => {
     );
   }
 
-  console.log(places);
-
   res.json({
     places: places.map((place) => place.toObject({ getters: true })),
   });
@@ -135,11 +133,15 @@ const updatePlaceById = async (req, res, next) => {
   place.title = title;
   place.description = description;
 
+  console.log(place);
+
   let result;
   try {
     result = await place.save();
-  } catch {
-    return next(new HttpError("Could not update! Please try again later", 500));
+  } catch (err) {
+    return next(
+      new HttpError(`Could not update! Please try again later - ${err}`, 500)
+    );
   }
 
   res.json({ place: result.toObject({ getters: true }) });
