@@ -36,8 +36,6 @@ function NewPlace() {
     false
   );
 
-  console.log(userId);
-
   const placeSubmitHandler = async (event) => {
     event.preventDefault();
     try {
@@ -54,8 +52,6 @@ function NewPlace() {
       );
       history.push("/");
     } catch (err) {}
-    // Create the logic ofr sending this to the backend
-    console.log(formState.inputs);
   };
 
   return (
