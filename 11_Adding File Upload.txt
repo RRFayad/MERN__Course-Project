@@ -6,4 +6,7 @@ Main Steps:
     1. Build the ImageUpload Component (FrontEnd)
         ** Auth Page & NewPlaces
         * <Input type= "file" accept= ".jpg,.png,.jpeg" />
-        
+
+
+    2. Set Up the Back end (Multer) 
+        * Files are bynary data - that's why we need to set multer up
