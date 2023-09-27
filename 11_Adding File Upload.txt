@@ -1,0 +1,9 @@
+Main Goals:
+    - Accept & Handle Files
+    - Add a FIle Picker in the Front End
+
+Main Steps:
+    1. Build the ImageUpload Component (FrontEnd)
+        ** Auth Page & NewPlaces
+        * <Input type= "file" accept= ".jpg,.png,.jpeg" />
+        
