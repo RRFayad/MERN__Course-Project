@@ -48,8 +48,7 @@ const signup = async (req, res, next) => {
   const createdUser = new User({
     name,
     email,
-    image:
-      "https://multiurso.com.br/wp-content/uploads/2022/08/diferenca-pato-marreco-foto-1132x670.jpg",
+    image: `${req.file.path}`,
     password,
     places: [],
   });

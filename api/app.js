@@ -1,4 +1,7 @@
+const fs = require("fs");
+const path = require("path");
 const express = require("express");
+
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 require("dotenv").config();
@@ -9,6 +12,8 @@ const userRoutes = require("./routes/users-routes");
 const app = express();
 
 app.use(bodyParser.json()); // Added this for the body of POSTs methods that create data (such as new places)
+
+app.use("/uploads/images", express.static(path.join("uploads", "images"))); // This MW let access to the files in the server side (for this path)
 
 //CORS => Will set Headers for the response
 app.use((req, res, next) => {
@@ -31,6 +36,9 @@ app.use((req, res, next) => {
 
 // When there's a MW with 4 params, express will recongnize it as special, and run it only when there's an error
 app.use((error, req, res, next) => {
+  if (req.file) {
+    fs.unlink(req.file.path, (err) => console.log(err));
+  }
   if (res.hearderSent) {
     return next(error);
   }

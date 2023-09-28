@@ -10,3 +10,16 @@ Main Steps:
 
     2. Set Up the Back end (Multer) 
         * Files are bynary data - that's why we need to set multer up
+        * We created the file-upload middleware and set it up in the routes, before it reaches the controller
+
+    3. Wire the FrontEnd and BackEnd up
+        * FrontEnd
+            - Check Auth - signUp() - Where we set the new FormData
+            -
+        * BackEnd
+            - We want to create an URL for a image
+                - Controller (sign up in this case)
+                - Serving the image ()
+            - And Handle Error - RollBack the file creation
+                - We created a logic in our error handler in App, that if the Req has a file, it will delete it from the path
+            - Create a middleware to let a browser reach files in the server (for a specific path)
