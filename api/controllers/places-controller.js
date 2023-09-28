@@ -1,3 +1,4 @@
+const fs = require("fs");
 const { v4: uuid } = require("uuid");
 const { validationResult } = require("express-validator");
 const mongoose = require("mongoose");
@@ -165,6 +166,8 @@ const deletePlaceById = async (req, res, next) => {
     return res.json({ message: "Could not find specified place or user" });
   }
 
+  const imagePath = place.image;
+
   try {
     const session = await mongoose.startSession();
     session.startTransaction();
@@ -179,6 +182,8 @@ const deletePlaceById = async (req, res, next) => {
     );
     return next(error);
   }
+
+  fs.unlink(imagePath, (err) => console.log(err));
 
   res.json({ message: "Place Deleted Successfully" });
 };

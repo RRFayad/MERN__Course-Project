@@ -14,7 +14,7 @@ Main Steps:
             * Files are bynary data - that's why we need to set multer up
             * We created the file-upload middleware and set it up in the routes, before it reaches the controller
 
-    3. Wire the FrontEnd and BackEnd up
+    2. Wire the FrontEnd and BackEnd up
         * FrontEnd
                 ** Check Auth - signUp()
             - Set the Request - Where we set the new FormData that allows us to handle with binary data (files)
@@ -27,3 +27,6 @@ Main Steps:
                 - We created a logic in our error handler in App, that if the Req has a file, it will delete it from the path
                     - So we don't need the handle error for each controller or each possible error
             - Create a middleware to let a browser reach files in the server (for a specific path)
+    
+    3. Remember to set logic for deleting the file, when deleting the Place
+        * Just a fs.unlink() logic
