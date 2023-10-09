@@ -29,13 +29,13 @@ const App = () => {
             <UserPlaces />
           </Route>
           <Route path="/places/new" exact>
-            {authCtx.isLoggedIn && <NewPlace />}
-            {!authCtx.isLoggedIn && <Redirect to="/" />}
+            {authCtx.token && <NewPlace />}
+            {!authCtx.token && <Redirect to="/" />}
           </Route>
           <Route path="/places/:placeId" exact>
             <UpdatePlace />
           </Route>
-          {!authCtx.isLoggedIn && (
+          {!authCtx.token && (
             <Route path="/auth" exact>
               <Auth />
             </Route>

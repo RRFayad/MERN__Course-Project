@@ -67,8 +67,6 @@ const Auth = () => {
   const authSubmitHandler = async (event) => {
     event.preventDefault();
 
-    console.log(formState.inputs);
-
     if (isLoginMode) {
       try {
         const responseData = await sendRequest(
@@ -80,7 +78,7 @@ const Auth = () => {
           }),
           { "Content-Type": "application/json" }
         );
-        auth.login(responseData.user.id);
+        auth.login(responseData.userId, responseData.token);
       } catch (err) {
         console.log(err);
       }
@@ -97,7 +95,8 @@ const Auth = () => {
           formData // fetch API set hearder automatically for the FormData
         );
 
-        auth.login(responseData.user.id);
+        // console.log(responseData);
+        auth.login(responseData.userId, responseData.token);
       } catch (err) {
         console.log(err);
       }

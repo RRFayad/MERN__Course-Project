@@ -1,0 +1,26 @@
+Main Goals:
+    - Setu Up Authentication
+    - Set Up Authorization
+
+How Should it Work
+    - The server generates a Token, which can be stored in the FrontEnd in a Cookie or Local Storage
+        * Traditionally (HTML rendered from the server) we use Session and sessoin Id (cookie)
+    
+Main Steps:
+    
+    1. Hash the Password (bcrypt)
+        a. install bcrypt
+        b. Set bcrypt for the sign up and for the login
+    
+    2. Generate JWT in the Backend (jsonwebtoken)
+        a. install and set up the controllers (again sign up and login)
+    
+    3. Create and Add the middleware for token verification
+        * We set to token to be checked in the Header (as it's metaData and not every req has body)
+
+    4. Set Up Front End for thw JWT
+        - Handle the token
+            (also we don't need to handle the loggedIn staate anymore, it's just a !!token)
+        - 
+
+    
