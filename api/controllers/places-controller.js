@@ -130,10 +130,14 @@ const updatePlaceById = async (req, res, next) => {
     return next(new HttpError("Could not find a place for th given Id", 404));
   }
 
+  if (place.creator.toString() !== req.userData.userId) {
+    // I must convert the ObjectId toString() for the comparisson
+    // I added this userData in the req in the check-auth MW
+    return next(new HttpError("You are not allowed to edit this place", 401));
+  }
+
   place.title = title;
   place.description = description;
-
-  console.log(place);
 
   let result;
   try {

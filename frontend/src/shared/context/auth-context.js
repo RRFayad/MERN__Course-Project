@@ -29,11 +29,11 @@ export const AuthContextProvider = (props) => {
   };
 
   const loginHandler = (userId, token) => {
-    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("token", token);
     localStorage.setItem("userId", userId);
     setToken(token);
     setUserId(userId);
-    return console.log("User Logged In");
+    return console.log(`User Logged In - token: ${token}`);
   };
 
   const signUpHandler = (userId) => {
