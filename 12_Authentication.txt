@@ -27,6 +27,7 @@ Main Steps:
         * The problem is, anyone with the right data (placeId and any token) could delete or edit any place (not only his own).
             * That's why we have to set an authorization middleware;
         
-        - 
+        - Add userData in the token (check-auth MW)
+            - Add userData verification FROM the token in the controller (check update-places)
 
     

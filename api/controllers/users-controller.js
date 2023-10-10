@@ -102,18 +102,18 @@ const login = async (req, res, next) => {
   }
 
   if (!user) {
-    return next(new HttpError("Please check your e-mail or password", 401));
+    return next(new HttpError("Please check your e-mail or password", 403));
   }
 
   let isValidPassword;
   try {
     isValidPassword = await bcrypt.compare(password, user.password);
   } catch (err) {
-    return next(new HttpError("Sign Up failed", 401));
+    return next(new HttpError("Sign Up failed", 403));
   }
 
   if (!isValidPassword) {
-    return next(new HttpError("Password did not match", 401));
+    return next(new HttpError("Password did not match", 403));
   }
 
   let token;

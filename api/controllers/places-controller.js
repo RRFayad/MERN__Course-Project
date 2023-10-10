@@ -130,6 +130,7 @@ const updatePlaceById = async (req, res, next) => {
     return next(new HttpError("Could not find a place for th given Id", 404));
   }
 
+  //Authorization
   if (place.creator.toString() !== req.userData.userId) {
     // I must convert the ObjectId toString() for the comparisson
     // I added this userData in the req in the check-auth MW
@@ -168,6 +169,10 @@ const deletePlaceById = async (req, res, next) => {
 
   if (!place) {
     return res.json({ message: "Could not find specified place or user" });
+  }
+
+  if (place.creator.id !== req.userData.userId) {
+    return next(new HttpError("You are not allowed to delete this place", 401));
   }
 
   const imagePath = place.image;
