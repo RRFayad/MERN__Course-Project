@@ -29,10 +29,16 @@ Main Steps:
         
         - Add userData in the token (check-auth MW)
             - Add userData verification FROM the token in the controller (check update-places)
+        
+        - Update Controllers (and frontend data) to manage user data from the Auth MW, not from the Req Body
+            (* e.g.: check createPlace and NewPlace)
 
     3. Manage Token in The Browser
         - Add Local Storage Logic for Logging In and Out
         - Manage the Token Expiration
             * and set autoLogout (useEffect and expirationTime)
+    
+    * Optional - CustomHook for Authentication
+        * As I created in the Context (Max created in the App), I don't really think it's useful
         
     

@@ -61,7 +61,7 @@ const createPlace = async (req, res, next) => {
     return next(new HttpError("Invalid Inputs", 422));
   }
 
-  const { title, description, address, creator } = req.body;
+  const { title, description, address } = req.body;
 
   let coordinates;
 
@@ -77,12 +77,12 @@ const createPlace = async (req, res, next) => {
     address,
     location: coordinates,
     image: req.file.path,
-    creator,
+    creator: req.userData.userId,
   });
 
   let user;
   try {
-    user = await User.findById(creator);
+    user = await User.findById(req.userData.userId);
   } catch {
     const error = new HttpError("Fetching user failed, please try again", 500);
     return next(error);
