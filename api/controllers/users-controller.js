@@ -85,9 +85,15 @@ const signup = async (req, res, next) => {
     return next(new HttpError("SignUp Failed, please try again later", 500));
   }
 
-  return res
-    .status(201)
-    .json({ usedId: createdUser.id, email: createdUser.email, token });
+  const decodedToken = jwt.decode(token);
+  const expirationTime = decodedToken.exp * 1000;
+
+  return res.status(201).json({
+    usedId: createdUser.id,
+    email: createdUser.email,
+    token,
+    expirationTime,
+  });
 };
 
 const login = async (req, res, next) => {
@@ -129,7 +135,12 @@ const login = async (req, res, next) => {
     );
   }
 
-  res.status(201).json({ userId: user.id, email: user.email, token });
+  const decodedToken = jwt.decode(token);
+  const expirationTime = decodedToken.exp * 1000;
+
+  res
+    .status(201)
+    .json({ userId: user.id, email: user.email, token, expirationTime });
 };
 
 exports.getAllUsers = getAllUsers;

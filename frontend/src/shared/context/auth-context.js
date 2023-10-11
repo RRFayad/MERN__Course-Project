@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 const AuthContext = React.createContext({
   isLoggedIn: false,
@@ -9,31 +9,54 @@ const AuthContext = React.createContext({
   token: null,
 });
 
+let logoutTimer;
+
 export const AuthContextProvider = (props) => {
-  const [token, setToken] = useState(null);
   const [userId, setUserId] = useState();
+  const [token, setToken] = useState(null);
+  const [tokenExpiration, setTokenExpiration] = useState();
 
   useEffect(() => {
-    if (localStorage.getItem("isLoggedIn")) {
-      setToken(localStorage.getItem("token"));
-      setUserId(localStorage.getItem("userId"));
-    } else {
-      setToken(null);
+    if (localStorage.getItem("userData")) {
+      const userData = JSON.parse(localStorage.getItem("userData"));
+      if (userData.expirationTime > Date.now()) {
+        setToken(userData.token);
+        setUserId(userData.id);
+        setTokenExpiration(userData.expirationTime);
+      }
     }
   }, []);
 
-  const logoutHandler = () => {
-    localStorage.removeItem("isLoggedIn");
+  const logoutHandler = useCallback(() => {
+    // used useCallback here as I used the function in a useEffect
+    localStorage.removeItem("userData");
+    setUserId(null);
     setToken(null);
+    setTokenExpiration(null);
     return console.log("User Logged Out");
-  };
+  }, []);
 
-  const loginHandler = (userId, token) => {
-    localStorage.setItem("token", token);
-    localStorage.setItem("userId", userId);
+  useEffect(() => {
+    if (tokenExpiration) {
+      logoutTimer = setTimeout(logoutHandler, tokenExpiration - Date.now());
+    } else {
+      clearTimeout(logoutTimer);
+    }
+  }, [tokenExpiration, logoutHandler]);
+
+  const loginHandler = (userId, token, expirationTime) => {
     setToken(token);
     setUserId(userId);
-    return console.log(`User Logged In - token: ${token}`);
+    setTokenExpiration(expirationTime);
+    const userData = {
+      id: userId,
+      token,
+      expirationTime,
+    };
+    localStorage.setItem("userData", JSON.stringify(userData));
+    return console.log(
+      `User Logged In - expires in: ${expirationTime - Date.now()} seconds`
+    );
   };
 
   const signUpHandler = (userId) => {

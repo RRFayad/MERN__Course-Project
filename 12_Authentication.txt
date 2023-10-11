@@ -30,4 +30,9 @@ Main Steps:
         - Add userData in the token (check-auth MW)
             - Add userData verification FROM the token in the controller (check update-places)
 
+    3. Manage Token in The Browser
+        - Add Local Storage Logic for Logging In and Out
+        - Manage the Token Expiration
+            * and set autoLogout (useEffect and expirationTime)
+        
     
