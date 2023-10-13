@@ -1,0 +1,24 @@
+Main Goals:
+    - Preparetion
+    - Differente Ways of Deploying
+
+Overview:
+    - Preparation
+        - Develop & Test Code (done at this point)
+        - SWAP URL's & Credentials for Production Ones
+        - Build & Deploy
+        - Test Deployed Aplication, Monitor & Adjust
+
+Main Steps:
+    1. Set Up Environment Variables
+        a. Backend
+            - Max creates a nodemon json
+        b. Frontend
+            - use env for the domain url of the requests
+                * all should start with REACT_APP_
+        * Maybe a want specific credential fopr production and for development environment
+
+    2. Bulding the React App
+        
+        
+    

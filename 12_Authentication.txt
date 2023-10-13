@@ -14,13 +14,16 @@ Main Steps:
             b. Set bcrypt for the sign up and for the login
         
         B. Generate JWT in the Backend (jsonwebtoken)
-            a. install and set up the controllers (again sign up and login)
+            a. install and set up the controllers to send the token and expiration time (again sign up and login)
         
         C. Create and Add the middleware for token verification
-            * We set to token to be checked in the Header (as it's metaData and not every req has body)
+                * We set to token to be checked in the Header (as it's metaData and not every req has body)
+                * Currently it's only to check iof there's a token
+            a. Add it before the routes that need auth verification
 
         D. Set Up Front End for thw JWT
             - Handle the token
+                - Manage ins states the token and the expiration
                 (also we don't need to handle the loggedIn staate anymore, it's just a !!token)
     
     2. Authorization
@@ -30,8 +33,16 @@ Main Steps:
         - Add userData in the token (check-auth MW)
             - Add userData verification FROM the token in the controller (check update-places)
         
-        - Update Controllers (and frontend data) to manage user data from the Auth MW, not from the Req Body
-            (* e.g.: check createPlace and NewPlace)
+        - Update All Reqs & Res
+            - FrontEnd:
+                - Insert token in Req's
+                - Eliminate userData
+            - Backend
+                - Confirm the MW in the route
+                - Add userData handling from the MW, not from the original Req
+                
+            - Review all requests also
+                (* e.g.: check createPlace and NewPlace)
 
     3. Manage Token in The Browser
         - Add Local Storage Logic for Logging In and Out
@@ -40,5 +51,4 @@ Main Steps:
     
     * Optional - CustomHook for Authentication
         * As I created in the Context (Max created in the App), I don't really think it's useful
-        
     
